@@ -229,7 +229,7 @@ header li {
 /* メインビジュアル */
 .main {
     height: 400px;
-    background-image: url(/img/mainbg.png);
+    background-image: url(../img/mainbg.png);
     background-position: center;
     background-size: cover;
     color: #ffffff;

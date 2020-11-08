@@ -1,0 +1,672 @@
+/* ここから下に記載していく */
+@charset "UTF-8";
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    color: #333333;
+    font-size: 1.6rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+a:hover,.btn:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.br-sp {
+    display: none;
+}
+
+.br-pc {
+    display: block;
+}
+
+/* ヘッダー */
+
+header .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    height: 100px;
+}
+
+.header-logo {
+    margin-left: 4%;
+}
+
+header ul {
+    display: flex;
+}
+
+header ul a {
+    text-decoration: none;
+    color: #333333;
+    font-weight: bold;
+}
+
+header li {
+    margin-right: 50px;
+}
+
+.sr-only,.nav-button,.nav-sns {
+    display: none;
+}
+
+
+@media screen and (max-width:640px) {
+
+    .container {
+        margin: 0 10px;
+    }
+    .wrapper {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .br-sp {
+        display: block;
+    }
+
+    .br-pc {
+        display: none;
+    }
+
+    /* ヘッダー モバイル */
+
+    header {
+        position: fixed;
+        top: 0;
+        background-color: #ffffff;
+        width: 100%;
+        z-index: 9999;
+    }
+
+    header .container {
+        height: 60px;
+        box-sizing: border-box;
+    }
+
+    .header-logo {
+        height: 100%;
+        margin: 0 auto;
+    }
+
+    .header-logo img {
+        height: 100%;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .sr-only {
+        border: 0; 
+        clip: rect(0 0 0 0); 
+        height: 1px; 
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    /* ナビゲーションボタン */
+    .nav-button {
+        display: block;
+	    box-sizing: content-box;
+	    padding-right: 10px;
+	    outline: none;
+	    border: none;
+    	background: none;
+    	width: 20px;
+    	height: 14px;
+    	cursor: pointer;
+    	color: #333333;
+    }
+
+    /* ナビゲーションボタンをハンバーガーに */
+    .nav-button::before,
+    .nav-button::after {
+    	content: '';
+    	display: block;
+    	height: 2px;
+    	background-color: currentColor;
+    	transform: translateY(5px);
+    	transition: 0.3s ease-in-out;
+    }
+
+    .nav-button::before {
+	    transform: translateY(-5px);
+	    box-shadow: 0 6px currentColor;
+    }
+    /* ナビゲーションボタン（閉じるボタン） */
+    .open .nav-button {
+	    z-index: 1000;
+	    color: #ffffff;
+    }
+
+    .open .nav-button::before {
+	    transform: translateY(1px) rotate(45deg);
+	    box-shadow: none;
+    }
+
+    .open .nav-button::after {
+	    transform: translateY(-1px) rotate(-45deg);
+    }
+
+    /* ナビゲーションメニューを開いたとき */
+    html.open, .open body {
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.open .form {
+		display: none;
+	}
+
+	.open nav {
+		left: 0;
+    }
+
+	html, body {
+		overflow-x: hidden;
+	}
+
+	.header {
+		position: relative;
+	}
+
+	.nav {
+		position: absolute;
+		top: 0;
+		left: 100%;
+		width: 100%;
+		height: 100vh;
+		background: rgba(0,0,0,0.8);
+        display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: left 0.5s;
+	}
+
+	.nav ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+		align-items: center;
+		list-style: none;
+		font-weight: bold;
+	}
+
+	.nav li {
+        margin:0 auto 40px;
+    }
+
+    .nav li a {
+        color: #ffffff;
+        font-size: 20px;
+    }
+
+    .nav-sns {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav-sns li:not(:last-child) {
+        margin-right: 30px;
+    }
+    
+}
+
+/* メインビジュアル */
+.main {
+    height: 400px;
+    background-image: url(/img/mainbg.png);
+    background-position: center;
+    background-size: cover;
+    color: #ffffff;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main h1 {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.main h2 {
+    font-size: 30px;
+}
+
+@media screen and (max-width:640px) {
+    
+    .main {
+        padding-top: 60px;
+        height: 300px;
+    }
+
+    .main h1 {
+        font-size: 28px;
+    }
+
+    .main h2 {
+        font-size: 21px;
+        line-height: 1.5;
+    }
+
+}
+
+/* 概要説明 */
+.about {
+    text-align: center;
+    background-color: #fafafa;
+}
+
+.title-en {
+    padding-top: 60px;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.about .title-en {
+    color: #ffd61a;
+}
+
+.title-ja {
+    font-size: 16px;
+    margin-bottom: 60px;
+}
+
+.message p {
+    font-size: 14px;
+    line-height: 2;
+}
+
+.message p:not(:last-child) {
+    margin-bottom: 40px;
+}
+
+.about-image {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.about-image p img {
+    width: 100%;
+}
+
+
+@media screen and (max-width:640px) {
+
+    .title-ja {
+        margin-bottom:30px;
+    }
+
+    .message p:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+    .about-image {
+        margin-top: 30px;
+    }
+
+    .about-image p:not(:first-child) {
+        display: none;
+    }
+}
+
+/* コース説明 */
+.course-text {
+    text-align: center;
+}
+
+.course .message {
+    margin-bottom: 60px;
+}
+
+.course-details {
+    background-color: #fafafa;
+}
+
+.course-details ul li {
+    display: flex;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.course-details ul li:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.course-photo,.detail-contents {
+    width: 50%;
+}
+
+.course-photo img {
+    width: 100%;
+}
+
+.detail-contents {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.detail-content {
+    width: 70%;
+    padding-left: 50px;
+    line-height: 2;
+    margin-right: auto;
+}
+
+.detail-content.teacher {
+    margin-right: 0;
+    margin-left: auto;
+    padding: 0 50px 0 0;
+}
+
+.detail-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.detail-txt {
+    font-size: 14px;
+}
+
+@media screen and (max-width:640px) {
+    .course-details ul li {
+        display: block;
+    }
+
+    .course-photo,.detail-contents {
+        width: 100%;
+    }
+    
+    .course .message {
+        margin-bottom: 30px;
+    }
+
+    .detail-content {
+        width: 100%;
+        padding: 0;
+        text-align: center;
+    }
+
+    .detail-header {
+        margin: 10px 0;
+        font-size: 20px;
+    }
+    
+    /* コースの詳細説明を非表示 */
+    .detail-txt {
+        display: none;
+    }
+}
+
+/* ニュース */
+.news {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.news .title-en {
+    color: #ffd61a;
+}
+
+.news-contents {
+    display: flex;
+    justify-content: center;
+}
+
+/* ニュース 記事 */
+.article {
+    width: 300px;
+    margin-bottom: 60px;
+    font-size: 12px;
+    text-align: left;
+    text-decoration: none;
+}
+
+.article:nth-child(2) {
+    margin: 0 30px 60px 30px;
+}
+
+@media screen and (max-width:640px) {
+    /* ニュースの最初の記事以外を非表示 */
+    .article:not(:first-child) {
+        display: none;
+    }
+
+    .article {
+        margin-bottom: 30px;
+    }
+}
+
+.article:hover {
+    cursor: pointer;
+}
+
+.article-date {
+    margin: 30px 0 24px 0;
+}
+
+.article-content {
+    line-height: 2;
+}
+
+.btn {
+    display: block;
+    position: relative;
+    width: 300px;
+    height: 60px;
+    color: #ffffff;
+    background-color: #ffd61a;
+    border-radius: 6px;
+    font-size: 24px;
+    text-decoration: none;
+    margin: 0 auto;
+    line-height: 55px;
+    border: 2px #ffd61a solid;
+}
+
+.btn:hover {
+    color: #ffd61a;
+    background-color: #ffffff;
+    border-color: #ffd61a;
+    transition: 0.3s;
+}
+
+/* アクセス */
+.access {
+    text-align: center;
+}
+
+.access .container {
+    background-color: #fafafa;
+}
+
+iframe {
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+.access-info {
+    text-align: left;
+    font-size: 12px;
+    padding-bottom: 30px;
+}
+
+.access-info table {
+    margin: 0 auto;
+}
+
+.access-info th {
+    padding: 0 60px 30px 0;
+}
+
+@media screen and (max-width:640px) {
+    iframe {
+        margin-bottom: 30px;
+    }
+
+    .access-info table {
+        width: 80%;
+    }
+
+    .access-info th {
+        padding: 0 30px 15px 0;
+        line-height: 1.2;
+    }
+}
+
+/* コンタクトフォーム */
+.contact {
+    text-align: center;
+    margin-bottom: 140px;
+}
+
+.contact .message p:not(:last-child) {
+    margin-bottom: 30px
+}
+
+.contact-form {
+    margin-top: 70px;
+}
+
+.contact-form p {
+    font-size: 10px;
+    text-align: right;
+    width: 80%;
+    padding-bottom: 10px;
+}
+
+.contact-form p span {
+    color: red;
+}
+
+.contact-form table {
+    margin: 0 auto 30px;
+    text-align: left;
+    font-size: 12px;
+}
+
+.contact-form table th {
+    width: 200px;
+    padding: 8px 64px 0 16px;
+    vertical-align: middle;
+    border: 1px solid #bfbfbf;
+    border-left: none;
+}
+
+.contact-form table td {
+    width: 400px;
+    padding: 8px;
+    border: 1px solid #bfbfbf;
+    border-right: none;
+}
+
+.contact-form input[type="text"],input[type="email"],select,textarea {
+    width: 80%;
+}
+
+.contact-form .checkbox {
+    margin-bottom: 24px;
+}
+
+.contact-form textarea {
+    height: 100px;
+}
+
+.contact-form .required:after {
+    content: '*';
+    color: red;
+}
+
+@media screen and (max-width:640px) {
+    .contact {
+        margin-bottom: 70px;
+    }
+
+    .contact-form {
+        margin-top: 30px;
+        line-height: 1.5;
+    }
+
+    .contact-form p {
+        width: 100%;
+    }
+
+    .contact-form .checkbox {
+        margin-bottom: 12px;
+    }
+}
+/* フッター */
+footer {
+    height: 70px;
+    background-color: #707070;
+    color: #ffffff;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+footer p {
+    margin: 30px auto;
+
+}
+
+footer .sns {
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer li {
+    list-style: none;
+    margin-right: 20px;
+}
+
+@media screen and (max-width:640px) {
+
+    footer {
+        height: 140px;
+        flex-direction: column-reverse;
+    }
+
+    footer .sns {
+        position: unset;
+    }
+
+    footer li:not(:last-child) {
+        margin-right: 20px;
+    }
+
+    footer li:last-child {
+        margin-right: 0;
+    }
+
+    footer p {
+        margin: 20px auto;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+}

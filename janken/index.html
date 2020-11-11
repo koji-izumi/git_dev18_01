@@ -17,7 +17,7 @@
   <!-- この中に記述していく -->
   <!-- ここから下にコードを書く -->
   <header class="header">
-    <h1>じゃんけんゲーム</h1>
+    <h1>じゃんけん　すごろくゲーム</h1>
   </header>
   <table id="table"></table>
   <div class="main">
@@ -30,8 +30,13 @@
         <div id="battle-hand"></div>
         <h2>サザエと<br>じゃんけん対決</h2>
         <button class="btn start-btn">対戦を始める</button>
+        <div class="second-btn">
+          <button class="next-btn">次の対戦へ</button>
+          <button class="reload-btn" onclick="window.location.reload()">最初から</button>
+        </div>
         <audio src="img/janken01.mp3" id="janken-bgm"></audio>
         <audio src="img/pon.mp3" id="pon-bgm"></audio>
+        <audio src="img/katsuo.mp3" id="katsuo-bgm"></audio>
       </div>
       <div class="cpu info">
         <h1>サザエ</h1>
@@ -48,7 +53,12 @@
         </ul>
         <p>何を出す？（出し手を選択）</p>
       </div>
-      <button class="btn reload" onclick="window.location.reload()">もう一度</button>
+      <ul class="rule">
+        <li>【ルール】</li>
+        <li>グーで勝ち→相手を２マス戻す</li>
+        <li>チョキで勝ち→２マス進む</li>
+        <li>パーで勝ち→５マス進む</li>
+      </ul>
       <div class="janken janken-cpu">
         <ul class="hand-img" id="cpuHand">
           <li><img src="img/janken_gu.jpeg" alt="" class="hand" id="cpu-gu"></li>

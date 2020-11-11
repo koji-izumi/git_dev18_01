@@ -145,15 +145,15 @@ body {
     padding-bottom: 20px;
 }
 
-.reload {
-    display: none;
-    width: 300px;
-    height: 60px;
-    font-size: 20px;
-    border-radius: 10px;
-    cursor: pointer;
+.second-btn {
+    display: flex;
+    margin-top: 40px;
+}
+.next-btn {
+    margin-right: 20px;
 }
 
-.reload:hover {
-    opacity: 0.8;
+.next-btn,.reload-btn {
+    display: none;
+    cursor: pointer;
 }

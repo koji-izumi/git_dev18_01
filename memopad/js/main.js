@@ -12,9 +12,9 @@ $("#add").on("click", function (){
     for (i = value.length - 1; i < value.length; i++) {
         const html = `
         <li>
-        <div class="ctglist">
+        <div class="ctg-list">
         <a href="#${value[i]}">${value[i]}</a>
-        <button class="ctgdelete" id="${value[i]}-delete"}>削除</button>
+        <button class="ctg-delete" id="${value[i]}-delete"}>削除</button>
         </div>
         </li>`;
 
@@ -37,10 +37,10 @@ $("#add").on("click", function (){
         $("main").append(conthtml);
         
         // 動画追加用のキーと空のvalueを定義
-        var videokey = value[i];
-        var videovalue = [];
-        localStorage.setItem(videokey,videovalue);
-        console.log(videovalue);
+        var videoKey = value[i];
+        var videoValue = [];
+        localStorage.setItem(videoKey,videoValue);
+        console.log(videoValue);
 
     }
 
@@ -48,34 +48,34 @@ $("#add").on("click", function (){
     $(".video-add").unbind("click");
     $(".video-add").on("click", function () {
         // クリックしたボタンのidを取得
-        var thisid = this.id;
+        var thisId = this.id;
         // クリックしたボタンの親要素（３つ目）のidを取得
-        parentid = $("#"+thisid).parent().parent().parent().attr('id');
+        var parentId = $("#"+thisId).parent().parent().parent().attr('id');
 
         // inputエリアに入力した値をvideovalueにpush
-        videovalue.push($("#"+parentid+"-name").val());
+        videoValue.push($("#"+parentId+"-name").val());
 
-        localStorage.setItem(videokey,JSON.stringify(videovalue));
+        localStorage.setItem(videoKey,JSON.stringify(videoValue));
         
         // pushされた値をiframeタグに挿入し動画を表示
-        var videos = JSON.parse(localStorage.getItem(parentid));
+        var videos = JSON.parse(localStorage.getItem(parentId));
         for(c=videos.length-1;c<videos.length;c++){
             const videohtml = `
-            <div class="youtube" id="${parentid}-youtube">
+            <div class="youtube" id="${parentId}-youtube">
             <iframe width="100%" height="360" src="https://www.youtube.com/embed?listType=search&list=${videos[c]}" frameborder="0" allowfullscreen="" id="${videos[c]}"></iframe>
             <button class="youtube-dlt" id="${videos[c]}-dlt">削除</button>`;
-            $("#"+parentid+"-video").append(videohtml);
+            $("#"+parentId+"-video").append(videohtml);
         }
-        $("#"+parentid+"-name").val("");
+        $("#"+parentId+"-name").val("");
     })
 
     // カテゴリーの削除ボタンを押したときの動作
-    $(".ctgdelete").unbind("click");
-   $(".ctgdelete").on("click", function () {
+    $(".ctg-delete").unbind("click");
+   $(".ctg-delete").on("click", function () {
         // 削除ボタンを押したカテゴリーのIDを取得
-        var thisdltid = this.id;
-        var index = $("#"+thisdltid).parent().parent().index();
-        var dltparentid = $("#"+thisdltid).parent().find('a').text();
+        var thisDltId = this.id;
+        var index = $("#"+thisDltId).parent().parent().index();
+        var dltParentId = $("#"+thisDltId).parent().find('a').text();
     
         // HTMLから削除しlocalstorageからも削除
         $(`#${value[index]}`).remove();
@@ -83,22 +83,22 @@ $("#add").on("click", function (){
         value.splice(index,1);
         localStorage.setItem("category",JSON.stringify(value));
         console.log(value);
-        localStorage.removeItem(dltparentid);
+        localStorage.removeItem(dltParentId);
     });
 
         // 動画の削除ボタンを押したときの動作
         $(".youtube-dlt").on("click",function(){
-            var thisid = this.id;
-            var videoctg = $("#"+thisid).parent().parent().parent().attr('id');
-            var videoindex = $("#"+thisid).parent().index();
-            var videotitle = $("#"+thisid).parent().find('iframe').attr('id');
-            console.log(videoctg);
-            $(`#${videolist[videoindex]}`).remove;
-            $("#"+thisid).parent().remove();
+            var thisId = this.id;
+            var videoCtg = $("#"+thisId).parent().parent().parent().attr('id');
+            var videoIndex = $("#"+thisId).parent().index();
+            var videoTitle = $("#"+thisId).parent().find('iframe').attr('id');
+            console.log(videoCtg);
+            $(`#${videoList[videoIndex]}`).remove;
+            $("#"+thisId).parent().remove();
     
-            videolist.splice(videoindex,1);
-            localStorage.setItem(`${videoctg}`,JSON.stringify(videolist));
-            localStorage.removeItem(videotitle);
+            videoList.splice(videoIndex,1);
+            localStorage.setItem(`${videoCtg}`,JSON.stringify(videoList));
+            localStorage.removeItem(videoTitle);
         })
 });
 
@@ -111,105 +111,105 @@ $("#clear").on("click", function () {
 
 // ページload時の動作 
 if (JSON.parse(localStorage.length) == 0) {
-    ctgvalue = [];
+    ctgValue = [];
 } else {
-    ctgvalue = JSON.parse(localStorage.getItem("category"))
+    ctgValue = JSON.parse(localStorage.getItem("category"))
 };
 
 // localstorageに保存されている値を表示
-for (var i = 0; i < ctgvalue.length; i++) {
+for (var i = 0; i < ctgValue.length; i++) {
     const html = `
     <li>
     <div class="ctglist">
-    <a href="#${ctgvalue[i]}">${ctgvalue[i]}</a>
-    <button class="ctgdelete" id="${ctgvalue[i]}-delete"}>削除</button>
+    <a href="#${ctgValue[i]}">${ctgValue[i]}</a>
+    <button class="ctgdelete" id="${ctgValue[i]}-delete"}>削除</button>
     </div>
     </li>`;
 
     $("#list").append(html);
 
     const conthtml = `
-    <div class="content" id="${ctgvalue[i]}">
+    <div class="content" id="${ctgValue[i]}">
         <div class="content-header">
-            <h1>#${ctgvalue[i]}</h1>
+            <h1>#${ctgValue[i]}</h1>
             <div class="video-search">
-                <input type="text" class="video-name" id="${ctgvalue[i]}-name" placeholder="人名や動画名・URLを入力"></input>
-                <button class="video-add" id="${ctgvalue[i]}-add">追加</button>
+                <input type="text" class="video-name" id="${ctgValue[i]}-name" placeholder="人名や動画名・URLを入力"></input>
+                <button class="video-add" id="${ctgValue[i]}-add">追加</button>
             </div>
         </div>
-        <div class="content-video" id="${ctgvalue[i]}-video">
+        <div class="content-video" id="${ctgValue[i]}-video">
         </div>
     </div>`;
 
     $("main").append(conthtml);
-    var videokey = ctgvalue[i];
-    var videovalue = [];
+    var videoKey = ctgValue[i];
+    var videoValue = [];
     $(".video-add").unbind("click");
     $(".video-add").on("click", function () {
         // クリックしたボタンのidを取得
-        var thisid = this.id;
+        var thisId = this.id;
         // クリックしたボタンの親要素（３つ目）のidを取得
-        parentid = $("#"+thisid).parent().parent().parent().attr('id');
+        var parentId = $("#"+thisId).parent().parent().parent().attr('id');
 
         // inputエリアに入力した値をvideovalueにpush
-        videovalue.push($("#"+parentid+"-name").val());
+        videoValue.push($("#"+parentId+"-name").val());
 
-        localStorage.setItem(videokey,JSON.stringify(videovalue));
+        localStorage.setItem(videoKey,JSON.stringify(videoValue));
         
-        var videos = JSON.parse(localStorage.getItem(parentid));
+        var videos = JSON.parse(localStorage.getItem(parentId));
         for(c=videos.length-1;c<videos.length;c++){
             const videohtml = `
-            <div class="youtube" id="${parentid}-youtube">
+            <div class="youtube" id="${parentId}-youtube">
             <iframe width="100%" height="360" src="https://www.youtube.com/embed?listType=search&list=${videos[c]}" frameborder="0" allowfullscreen="" id="${videos[c]}"></iframe>
             <button class="youtube-dlt" id="${videos[c]}-dlt">削除</button>`;
-            $("#"+parentid+"-video").append(videohtml);
+            $("#"+parentId+"-video").append(videohtml);
         }
-        $("#"+parentid+"-name").val("");
+        $("#"+parentId+"-name").val("");
 
     })
 
-    $(".ctgdelete").unbind("click");
- $(".ctgdelete").on("click", function () {
-        var thisdltid = this.id;
-        var index = $("#"+thisdltid).parent().parent().index();
-        var dltparentid = $("#"+thisdltid).parent().find('a').text();
+    $(".ctg-delete").unbind("click");
+ $(".ctg-delete").on("click", function () {
+        var thisDltId = this.id;
+        var index = $("#"+thisDltId).parent().parent().index();
+        var dltParentId = $("#"+thisDltId).parent().find('a').text();
 
-        $(`#${ctgvalue[index]}`).remove();
+        $(`#${ctgValue[index]}`).remove();
         $("li").eq(index).remove();
-        ctgvalue.splice(index,1);
-        localStorage.setItem("category",JSON.stringify(ctgvalue));
-        console.log(ctgvalue);
-        localStorage.removeItem(dltparentid);
+        ctgValue.splice(index,1);
+        localStorage.setItem("category",JSON.stringify(ctgValue));
+        console.log(ctgValue);
+        localStorage.removeItem(dltParentId);
     });
 
 }
 
 // 更新時にYouTube動画が消えてしまう（サーバーが違う）ため
 // localstorageに保存されている値を再度iframeタグに挿入して動画を表示
-for(var t=0;t<ctgvalue.length;t++){
-    var ctgnum = ctgvalue[t];
-    var videolist = JSON.parse(localStorage.getItem(ctgnum));
-    for(var i =0;i<videolist.length;i++){
+for(var t=0;t<ctgValue.length;t++){
+    var ctgNum = ctgValue[t];
+    var videoList = JSON.parse(localStorage.getItem(ctgNum));
+    for(var i =0;i<videoList.length;i++){
     const videohtml =`
-    <div class="youtube" id="${ctgnum}-youtube">
-    <iframe width="100%" height="360" src="https://www.youtube.com/embed?listType=search&list=${videolist[i]}" frameborder="0" allowfullscreen="" id="${videolist[i]}"></iframe>
-    <button class="youtube-dlt" id="${videolist[i]}-dlt">削除</button>`;
-    $("#"+ctgnum+"-video").append(videohtml);
+    <div class="youtube" id="${ctgNum}-youtube">
+    <iframe width="100%" height="360" src="https://www.youtube.com/embed?listType=search&list=${videoList[i]}" frameborder="0" allowfullscreen="" id="${videoList[i]}"></iframe>
+    <button class="youtube-dlt" id="${videoList[i]}-dlt">削除</button>`;
+    $("#"+ctgNum+"-video").append(videohtml);
     }
 
     // 動画の削除ボタンを押したときの動作
     $(".youtube-dlt").on("click",function(){
-        var thisid = this.id;
-        var videoctg = $("#"+thisid).parent().parent().parent().attr('id');
-        var videoindex = $("#"+thisid).parent().index();
-        var videotitle = $("#"+thisid).parent().find('iframe').attr('id');
-        console.log(videoctg);
-        $(`#${videolist[videoindex]}`).remove;
-        $("#"+thisid).parent().remove();
+        var thisId = this.id;
+        var videoCtg = $("#"+thisId).parent().parent().parent().attr('id');
+        var videoIndex = $("#"+thisId).parent().index();
+        var videoTitle = $("#"+thisId).parent().find('iframe').attr('id');
+        console.log(videoCtg);
+        $(`#${videoList[videoIndex]}`).remove;
+        $("#"+thisId).parent().remove();
 
-        videolist.splice(videoindex,1);
-        localStorage.setItem(`${videoctg}`,JSON.stringify(videolist));
-        localStorage.removeItem(videotitle);
+        videoList.splice(videoIndex,1);
+        localStorage.setItem(`${videoCtg}`,JSON.stringify(videoList));
+        localStorage.removeItem(videoTitle);
     })
 }
 

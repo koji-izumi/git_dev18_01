@@ -1,0 +1,144 @@
+@charset "UTF-8";
+
+a:hover{
+    opacity: 0.8;
+}
+
+.header {
+    width: 100%;
+    height: 60px;
+    z-index: 9999;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid black;
+    background-color: black;
+}
+
+.header-logo a {
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
+.register {
+    padding-top: 60px;
+    height: 240px;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+.register-top {
+    padding: 20px 0 40px;
+}
+
+.register-top h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.register-top .category-input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-top input{
+    width: 250px;
+    height: 40px;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.register-top button {
+    height: 40px;
+    cursor: pointer;
+}
+
+.register-top button:not(:last-child){
+    margin-right: 10px;
+}
+
+
+
+#list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+#list li {
+    font-size: 40px;
+}
+
+#list li:not(:last-child){
+    margin-right: 60px;
+}
+
+#list li a {
+    text-decoration: none;
+}
+
+.content {
+    height: 500px;
+    padding-top: 10px;
+    border-bottom: 1px solid black;
+}
+
+.content-header h1{
+    margin-left: 20px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.content-header {
+    display: flex;
+    justify-content: left;
+    align-items: baseline;
+}
+
+.content-header input {
+    width: 300px;
+    height: 20px;
+    margin: 0 10px;
+}
+
+.content-video {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 40px 5% 40px;
+}
+
+.youtube:not(:last-child){
+    margin-right: 30px;
+}
+
+.ctglist {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ctgdelete {
+    font-size: 12px;
+    width: 40px;
+    margin-top: 10px;
+}
+
+.youtube {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+}
+
+.youtube-dlt {
+    margin-top: 10px;
+    cursor: pointer;
+}

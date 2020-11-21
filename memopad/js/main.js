@@ -9,7 +9,7 @@ $("#add").on("click", function (){
     $("#category").val("");
 
     // 登録したカテゴリーをHTMLに表示
-    for (i = value.length - 1; i < value.length; i++) {
+    for (let i = value.length - 1; i < value.length; i++) {
         const html = `
         <li>
         <div class="ctg-list">
@@ -37,8 +37,8 @@ $("#add").on("click", function (){
         $("main").append(conthtml);
         
         // 動画追加用のキーと空のvalueを定義
-        let videoKey = value[i];
-        let videoValue = [];
+        var videoKey = value[i];
+        var videoValue = [];
         localStorage.setItem(videoKey,videoValue);
         console.log(videoValue);
 
@@ -50,7 +50,7 @@ $("#add").on("click", function (){
         // クリックしたボタンのidを取得
         let thisId = this.id;
         // クリックしたボタンの親要素（３つ目）のidを取得
-        let parentId = $("#"+thisId).parent().parent().parent().attr('id');
+         parentId = $("#"+thisId).parent().parent().parent().attr('id');
 
         // inputエリアに入力した値をvideovalueにpush
         videoValue.push($("#"+parentId+"-name").val());
@@ -67,6 +67,21 @@ $("#add").on("click", function (){
             $("#"+parentId+"-video").append(videohtml);
         }
         $("#"+parentId+"-name").val("");
+
+    // 動画の削除ボタンを押したときの動作
+     $(".youtube-dlt").on("click",function(){
+        let thisVideoDltId = this.id;
+        let videoCtg = $("#"+thisVideoDltId).parent().parent().parent().attr('id');
+        let videoIndex = $("#"+thisVideoDltId).parent().index();
+        console.log(videoIndex);
+        let videoTitle = $("#"+thisVideoDltId).parent().find('iframe').attr('id');
+        $(`#${videos[videoIndex]}`).remove();
+        $("#"+thisVideoDltId).parent().remove();
+
+        videos.splice(videoIndex,1);
+        localStorage.setItem(`${videoCtg}`,JSON.stringify(videos));
+        localStorage.removeItem(videoTitle);
+    })
     })
 
     // カテゴリーの削除ボタンを押したときの動作
@@ -86,20 +101,6 @@ $("#add").on("click", function (){
         localStorage.removeItem(dltParentId);
     });
 
-        // 動画の削除ボタンを押したときの動作
-        $(".youtube-dlt").on("click",function(){
-            let thisId = this.id;
-            let videoCtg = $("#"+thisId).parent().parent().parent().attr('id');
-            let videoIndex = $("#"+thisId).parent().index();
-            let videoTitle = $("#"+thisId).parent().find('iframe').attr('id');
-            console.log(videoCtg);
-            $(`#${videoList[videoIndex]}`).remove;
-            $("#"+thisId).parent().remove();
-    
-            videoList.splice(videoIndex,1);
-            localStorage.setItem(`${videoCtg}`,JSON.stringify(videoList));
-            localStorage.removeItem(videoTitle);
-        })
 });
 
 // 全削除ボタンを押したときの動作
@@ -120,9 +121,9 @@ if (JSON.parse(localStorage.length) == 0) {
 for (let i = 0; i < ctgValue.length; i++) {
     const html = `
     <li>
-    <div class="ctglist">
+    <div class="ctg-list">
     <a href="#${ctgValue[i]}">${ctgValue[i]}</a>
-    <button class="ctgdelete" id="${ctgValue[i]}-delete"}>削除</button>
+    <button class="ctg-delete" id="${ctgValue[i]}-delete"}>削除</button>
     </div>
     </li>`;
 

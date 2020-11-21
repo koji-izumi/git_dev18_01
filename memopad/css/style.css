@@ -117,14 +117,14 @@ a:hover{
     margin-right: 30px;
 }
 
-.ctglist {
+.ctg-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.ctgdelete {
+.ctg-delete {
     font-size: 12px;
     width: 40px;
     margin-top: 10px;
